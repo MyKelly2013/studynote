@@ -1,0 +1,54 @@
+git init：创建版本库即repository，成功后会出现.git文件，可通过ls -ah命令查看
+git add <file>：将文件添加到仓库
+git commit -m "comments" <file>：将文件提交到仓库
+git status：查看当前仓库状态
+git diff：查看文件与仓库的difference
+git log：查看提交历史日志
+git log --pretty=oneline：历史日志一行显示
+git reflog：查看执行的所有命令
+	HEAD表示当前最新提交的版本，distributed
+git reset --hard HEAD^：回退到上一版本
+git checkout -- <file>：丢弃工作区的修改
+git reset HEAD <file>：将暂存区的修改撤销至工作区
+git rm：删除文件
+
+连接远程仓库：
+1.创建SSH Key：ssh-keygen -t rsa -C "mykelly_2013@163.com" 	保存于：/Users/kelly/.ssh
+2.在github上添加id_rsa.pub公钥
+3.关联远程库：git remote add origin git@github.com:WangMing917/studyNotes.git
+4.push 本地文件到远程库中：git push -u origin master(第一次提交时才需加 -u)；
+
+git clone git@github.com:WangMing917/StudyTestProject.git :从远程库中下载
+
+git checkout -b dev :创建dev分支并切换至dev分支上
+git branch dev:创建dev分支
+git checkout dev：切换至dev分支
+git branch：查看当前分支
+git merge dev：在master上合并dev分支，默认使用Fast forward模式合并分支，合并完成后删除分支会丢掉分支内容
+git merge --no-ff -m "merge with no-ff" dev ：使用no-ff模式合并dev分支，这个在merge时会生成一个新的commit
+git branch -d dev：删除dev分支
+git log --graph --pretty=oneline --abbrev-commit
+
+git stash :保存当前工作现场
+git stash list ：查看保存的工作现场
+git stash apply：恢复stash内容，但没有删除stash中内容没有删除
+git stash drop：删除stash中的内容
+git stash pop：恢复stash中内容并删除stash中内容
+git stash apply stash@{0}：多次stash时，恢复某一个stash
+git branch -D <name>：强行删除一个未合并的分支
+git remote ：查看远程库信息
+git remote -v：查看远程库详细信息
+git branch --set-upstream-to <branch-name> origin/<branch-name> ：当本地分支与远程分支的链接关系没有创建时使用的命令
+
+git tag v1.0：打v1.0的标签
+git tag ：查看所有标签
+git tag v0.9 <commit id> ：在某一个提交的历史上打tag
+git show v0.9：查看tag的信息
+git tag -a v0.1 -m "comment infomation" <commit id> ：打tag时备注
+git tag -d v0.1 ：删除本地标签
+git push origin :refs/tags/v0.1：将本地删除的tag push至远程库
+git push origin <tagname> ：将tag推送至远程库
+git push origin --tags：推送所有标签
+
+git config --global alias.co checkout：创建checkout的别名
+git last：查看最后一次提交
